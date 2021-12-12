@@ -21,22 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-l_-7(##-zjnptbvy0il(j)bs5mmi^+ffp+-%r%clf%vj_z9@2^'
-# SECURITY WARNING: keep the secret key used in production secret!
+
 
 # SECRET_KEY = "cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag"
 import os
+# SECRET_KEY = os.environ['SECRET_KEY']
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 # Read SECRET_KEY from an environment variable
 
-SECRET_KEY = os.environ['SECRET_KEY']
-
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# SECURITY WARNING: don't run with debug turned on in production!
+
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
-
 
 ALLOWED_HOSTS = ['*']
 
@@ -71,7 +69,7 @@ ROOT_URLCONF = 'codethinkers.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
