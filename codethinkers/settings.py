@@ -30,11 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-# OR
 
-# Read secret key from a file
-with open('/etc/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # SECURITY WARNING: don't run with debug turned on in production!
