@@ -1,7 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from users.models import NewUser
+# from users.models import NewUser
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
@@ -32,5 +34,5 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
-admin.site.register(NewUser, UserAdmin)
+admin.site.register(User, UserAdmin)
 # admin.site.register(NewUser)
