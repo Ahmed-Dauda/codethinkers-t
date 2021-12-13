@@ -32,8 +32,8 @@ class CustomUserManager(BaseUserManager):
     user.save(using=self._db)
     return user
   
-  class Meta:
-        db_table = 'auth_user'
+  # class Meta:
+  #       db_table = 'auth_user'
       
   # def create_user(self, email, password, **extra_fields):
   #   return self._create_user(email, password, False, False, **extra_fields)
@@ -47,8 +47,8 @@ class CustomUserManager(BaseUserManager):
 class NewUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(max_length=254, unique=True)
-    username = models.CharField(max_length=35,  blank=True)
-    phone_number = models.EmailField(max_length=254, blank= True)
+    username = models.CharField(max_length=225,  blank=True)
+    phone_number = models.CharField(max_length=254,blank= True, null=True,)
     first_name = models.CharField(max_length=254, null=True, blank=True)
     last_name = models.CharField(max_length=254, null=True, blank=True)
     countries = models.CharField(max_length=254,  blank=True, null=True)
@@ -58,21 +58,20 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     
-
+    objects = CustomUserManager()
+    
     USERNAME_FIELD = 'email'
     # USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'username'
     REQUIRED_FIELDS = []
-
-    objects = CustomUserManager()
 
     def __str__(self):
         return f'{self.email}'
 
     # def get_absolute_url(self):
     #     return "/users/%i/" % (self.pk)
-    class Meta:
-      db_table = 'auth_user'
+    # class Meta:
+    #   db_table = 'auth_user'
 
 # gender_choice = [
 #   ('Male', 'Male'),
